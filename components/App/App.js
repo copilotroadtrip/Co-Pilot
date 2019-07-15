@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import Header from '../Header/Header'
+
 
 export default class App extends Component {
+  
   state = {
     origin: '',
-    destintation: '',
+    destination: '',
     error: '',
     trip: {}
   }
 
-
+  componentDidUpdate = () => {
+    console.log(this.state.destination)
+  }
 
   makeTrip = async () => {
     try {
@@ -31,12 +36,14 @@ export default class App extends Component {
 
 
   render() {
+  
     return (
       <View style={styles.container}>
-        <Text>Co-Pilot!</Text>
+        <Header/>
         <TextInput style={styles.textInput} placeholder='Enter your start city' onChangeText={text => this.setState({origin: text})}/>
         <TextInput style={styles.textInput} placeholder='Enter your destination'onChangeText={text => this.setState({destination: text})}/>
         <Button onPress={() => this.makeTrip()} title='Make Trip'/>
+        <Text>{this.state.error}</Text>
       </View>
     );
   }
@@ -48,7 +55,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
   },
   textInput: {
     width: 250,
