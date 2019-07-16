@@ -4,8 +4,9 @@ import { StyleSheet, Text, View } from "react-native";
 export default function PlacesCard(props) {
   return (
     <View>
-      <Text>{props.place.name}</Text>
-      <Text>{props.place.weather.weather}</Text>
+      {/* <Text>{props.place.name}</Text>
+      <Text>{props.place.weather.weather}</Text> */}
+      <Text>Hi</Text>
     </View>
   );
 }
