@@ -32,7 +32,7 @@ export default class Home extends Component {
                 population: 87325,
                 weather: {
                     time: 1563325200,
-                    summary: "Partly Cloudy",
+                    summary: "partly_cloudy_day",
                     icon: "partly-cloudy-day",
                     temperature: 94.63,
                     precipProbability: 0,
