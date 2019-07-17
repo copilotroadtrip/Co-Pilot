@@ -17,7 +17,7 @@ export default class Home extends Component {
                 population: 716492,
                 weather: {
                     time: 1563299867,
-                    summary: "Mostly Cloudy",
+                    summary: "tornado",
                     icon: "partly-cloudy-day",
                     temperature: 86.57,
                     precipProbability: 0,
@@ -100,6 +100,9 @@ static navigationOptions = {
     headerTintColor: '#fff',
     headerTitleStyle: {
       fontWeight: 'bold',
+      fontFamily: 'Marker Felt',
+      fontSize: 20,
+      
     },
   };
 
@@ -137,7 +140,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     fontSize: 20,
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
   },
   backGround: {
       height: '100%',
@@ -159,7 +162,9 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     textAlign: 'center',
-    padding: 20,
+    padding: 10,
+    fontFamily: 'Marker Felt',
+    fontSize: 25,
   }
 });
 
