@@ -26,7 +26,7 @@ export default function PlacesCard(props) {
   return (
     <ScrollView style={styles.view}>
       {trip.places.map((place, index) => {
-        let weather = place.weather.summary;
+        let weather = place.weather.icon;
         if (trip.legs[index]) {
           return (
             <View key={Math.random()}>

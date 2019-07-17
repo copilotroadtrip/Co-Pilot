@@ -23,10 +23,10 @@ export default class Place extends Component {
     const { navigation } = this.props;
     const place = navigation.getParam("placeData");
     const randomIndex = Math.floor(Math.random() * 3);
-    if (place.population < 500000) {
+    if (place.population > 500000) {
       this.setState({ randomCity: cityImages.large[randomIndex] });
     }
-    if (place.population > 500000) {
+    if (place.population < 500000) {
       this.setState({ randomCity: cityImages.medium[randomIndex] });
     }
     if (place.population < 2000) {
