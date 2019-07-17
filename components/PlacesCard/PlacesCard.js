@@ -1,6 +1,7 @@
 import React from "react";
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity} from "react-native";
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView} from "react-native";
 import { weatherList } from '../../assets/backgroundImages';
+import Place from '../Place/Place';
 
 
 export default function PlacesCard(props) {
@@ -15,15 +16,14 @@ export default function PlacesCard(props) {
    }
 
   return (
-    <View style={styles.view}>
+    <ScrollView style={styles.view}>
       {trip.places.map((place, index) => {
         let weather = place.weather.summary
-        
         if(trip.legs[index]) {
           return(
-            <View>
+            <View key={Math.random()} >
             <ImageBackground imageStyle={{ borderRadius: 20}} source={{uri: weatherList[weather]}} key={place.name} style={styles.image} >
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => props.navigation.navigate('Place')}>
                 <Text style={styles.name}>{place.name}</Text>
                 <Text style={styles.weather}>{place.weather.temperature + '\u2109'}</Text>
                 <Text style={styles.summary}>{place.weather.summary}</Text>
@@ -38,9 +38,9 @@ export default function PlacesCard(props) {
             )
         } else {
           return(
-            <View>
+            <View key={Math.random()} style={{marginBottom: 30}}>
             <ImageBackground imageStyle={{ borderRadius: 20}} source={{uri: weatherList[weather]}} key={place.name} style={styles.image} >
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => props.navigation.navigate('Place')}>
                 <Text style={styles.name}>{place.name}</Text>
                 <Text style={styles.weather}>{place.weather.temperature + '\u2109'}</Text>
                 <Text style={styles.summary}>{place.weather.summary}</Text>
@@ -49,23 +49,26 @@ export default function PlacesCard(props) {
             </View>
             )
         }
-        
       })}
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   name: {
     color: 'black',
+    textShadowColor: 'rgba(255, 255, 255, 0.3)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 30,
     fontSize: 35,
     fontFamily: 'Optima',
     fontWeight: 'bold',
     paddingTop: 100,
     paddingLeft: 20,
+    opacity: 5,
   },
   weather: {
-    color: 'black',
+    color: 'white',
     fontFamily: 'Optima',
     fontWeight: 'bold',
     position: 'absolute',
@@ -98,6 +101,8 @@ const styles = StyleSheet.create({
   },
   hours: {
     fontSize: 30,
-  
+  },
+  view: {
+    backgroundColor: '#F5FCFF',
   }
 })

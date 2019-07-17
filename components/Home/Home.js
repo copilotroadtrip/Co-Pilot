@@ -41,9 +41,124 @@ export default class Home extends Component {
                     windGust: 9.93,
                     windBearing: 250
                 }
+            },
+            {
+                name: "Ogden, UT, USA",
+                population: 87325,
+                weather: {
+                    time: 1563325200,
+                    summary: "partly_cloudy_day",
+                    icon: "partly-cloudy-day",
+                    temperature: 94.63,
+                    precipProbability: 0,
+                    precipIntensity: 0,
+                    windSpeed: 5.05,
+                    windGust: 9.93,
+                    windBearing: 250
+                }
+            },
+            {
+                name: "Ogden, UT, USA",
+                population: 87325,
+                weather: {
+                    time: 1563325200,
+                    summary: "partly_cloudy_day",
+                    icon: "partly-cloudy-day",
+                    temperature: 94.63,
+                    precipProbability: 0,
+                    precipIntensity: 0,
+                    windSpeed: 5.05,
+                    windGust: 9.93,
+                    windBearing: 250
+                }
+            },
+            {
+                name: "Ogden, UT, USA",
+                population: 87325,
+                weather: {
+                    time: 1563325200,
+                    summary: "partly_cloudy_day",
+                    icon: "partly-cloudy-day",
+                    temperature: 94.63,
+                    precipProbability: 0,
+                    precipIntensity: 0,
+                    windSpeed: 5.05,
+                    windGust: 9.93,
+                    windBearing: 250
+                }
+            },
+            {
+                name: "Ogden, UT, USA",
+                population: 87325,
+                weather: {
+                    time: 1563325200,
+                    summary: "partly_cloudy_day",
+                    icon: "partly-cloudy-day",
+                    temperature: 94.63,
+                    precipProbability: 0,
+                    precipIntensity: 0,
+                    windSpeed: 5.05,
+                    windGust: 9.93,
+                    windBearing: 250
+                }
+            },
+            {
+                name: "Ogden, UT, USA",
+                population: 87325,
+                weather: {
+                    time: 1563325200,
+                    summary: "partly_cloudy_day",
+                    icon: "partly-cloudy-day",
+                    temperature: 94.63,
+                    precipProbability: 0,
+                    precipIntensity: 0,
+                    windSpeed: 5.05,
+                    windGust: 9.93,
+                    windBearing: 250
+                }
+            },
+            {
+                name: "Ogden, UT, USA",
+                population: 87325,
+                weather: {
+                    time: 1563325200,
+                    summary: "partly_cloudy_day",
+                    icon: "partly-cloudy-day",
+                    temperature: 94.63,
+                    precipProbability: 0,
+                    precipIntensity: 0,
+                    windSpeed: 5.05,
+                    windGust: 9.93,
+                    windBearing: 250
+                }
             }
+
         ],
         legs: [
+            {
+                distance: "514 mi",
+                duration_in_hours: 7.820277777777778
+            },
+            {
+                distance: "514 mi",
+                duration_in_hours: 7.820277777777778
+            },
+            {
+                distance: "514 mi",
+                duration_in_hours: 7.820277777777778
+            },
+            {
+                distance: "514 mi",
+                duration_in_hours: 7.820277777777778
+            },
+            {
+                distance: "514 mi",
+                duration_in_hours: 7.820277777777778
+            },
+            {
+                distance: "514 mi",
+                duration_in_hours: 7.820277777777778
+            },
             {
                 distance: "514 mi",
                 duration_in_hours: 7.820277777777778
@@ -112,12 +227,12 @@ static navigationOptions = {
          <ImageBackground style={styles.backGround} source={require('../../assets/roadtrip1.jpeg')}>
             <TextInput
                 style={styles.textInput}
-                placeholder="Enter your start city"
+                placeholder="Enter your start city..."
                 onChangeText={text => this.setState({ origin: text })}
             />
             <TextInput
                 style={styles.textInput}
-                placeholder="Enter your destination"
+                placeholder="Enter your destination..."
                 onChangeText={text => this.setState({ destination: text })}
             />
             <TouchableOpacity onPress={() => this.makeTrip()} style={styles.button}>
@@ -140,7 +255,6 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     fontSize: 20,
     fontWeight: "bold",
-    textAlign: "center",
   },
   backGround: {
       height: '100%',

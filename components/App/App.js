@@ -7,7 +7,7 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 const AppNavigator = createStackNavigator ({
   Home: Home,
   PlacesCard: PlacesCard,
-  // Place: Place,
+  Place: Place
 })
 
 const AppContainer = createAppContainer(AppNavigator);
