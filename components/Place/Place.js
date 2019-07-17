@@ -12,7 +12,7 @@ import { cityImages } from "../../assets/cityImages";
 export default class Place extends Component {
   constructor(props) {
     super(props);
-    this.state = { randomCity: "" };
+    this.state = { randomCity: "https://livability.com/sites/default/files/Charlotte-NC-Skyline.jpg" };
   }
 
   componentDidMount = () => {
@@ -22,7 +22,7 @@ export default class Place extends Component {
   randomCityGenerator = () => {
     const { navigation } = this.props;
     const place = navigation.getParam("placeData");
-    const randomIndex = Math.floor(Math.random() * 3);
+    let randomIndex = Math.floor(Math.random() * 3);
     if (place.population > 500000) {
       this.setState({ randomCity: cityImages.large[randomIndex] });
     }
@@ -39,6 +39,7 @@ export default class Place extends Component {
       <ImageBackground
         style={styles.backGround}
         source={{ uri: this.state.randomCity }}
+        imageStyle={{opacity:0.2}}
       >
         <Text>stuff</Text>
       </ImageBackground>
@@ -49,6 +50,7 @@ export default class Place extends Component {
 const styles = StyleSheet.create({
   backGround: {
     width: "100%",
-    height: "100%"
+    height: "100%",
+    backgroundColor: '#FFFFFF50',
   }
 });

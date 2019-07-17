@@ -4,6 +4,7 @@ import Header from "../Header/Header";
 import PlacesCard from '../PlacesCard/PlacesCard';
 
 
+
 export default class Home extends Component {
 
   state = {
@@ -328,6 +329,16 @@ export default class Home extends Component {
     }
   };
 
+  componentDidMount = () => {
+      navigator.geolocation.getCurrentPosition(position => {
+          const location = position
+          this.setState({origin: `${location.coords.latitude} ${location.coords.longitude}`})
+      },
+      error => console.log(error.message),
+      {enableHighAccuracy: true, timeout: 2000}
+      );
+  }
+
 
   makeTrip = async () => {
     this.props.navigation.navigate('PlacesCard', {
@@ -346,8 +357,10 @@ export default class Home extends Component {
     } catch (error) {    
       this.setState({ error: error.message });
     }
+ 
   };
 
+ 
   renderPlaces = () => {
     const { places, legs } = this.state.trip;
     return places.map((place, index) => {
@@ -388,8 +401,9 @@ static navigationOptions = {
          <ImageBackground style={styles.backGround} source={require('../../assets/roadtrip1.jpeg')}>
             <TextInput
                 style={styles.textInput}
-                placeholder="Enter your start city..."
+                placeholder="Your Location..."
                 onChangeText={text => this.setState({ origin: text })}
+                value='Your Location'
             />
             <TextInput
                 style={styles.textInput}
