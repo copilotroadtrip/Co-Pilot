@@ -31,10 +31,11 @@ export default function PlacesCard(props) {
           return (
             <View key={Math.random()}>
               <ImageBackground
-                imageStyle={{ borderRadius: 20 }}
+                imageStyle={{ borderRadius: 20, opacity:0.7 }}
                 source={{ uri: weatherList[weather] }}
                 key={place.name}
                 style={styles.image}
+               
               >
                 <TouchableOpacity
                   onPress={() =>
@@ -63,10 +64,11 @@ export default function PlacesCard(props) {
           return (
             <View key={Math.random()} style={{ marginBottom: 30 }}>
               <ImageBackground
-                imageStyle={{ borderRadius: 20 }}
+                imageStyle={{ borderRadius: 20, opacity:0.75 }}
                 source={{ uri: weatherList[weather] }}
                 key={place.name}
                 style={styles.image}
+                
               >
                 <TouchableOpacity
                   onPress={() =>
@@ -104,7 +106,7 @@ const styles = StyleSheet.create({
     opacity: 5
   },
   weather: {
-    color: "white",
+    color: "black",
     fontFamily: "Optima",
     fontWeight: "bold",
     position: "absolute",
@@ -122,7 +124,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginRight: "auto",
     marginBottom: 0,
-    marginLeft: "auto"
+    marginLeft: "auto",
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
   },
   legs: {
     flexDirection: "row",
