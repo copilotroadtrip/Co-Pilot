@@ -412,15 +412,18 @@ export default class Home extends Component {
           placeholderTextColor="blue"
           onChangeText={text => this.setState({ origin: text })}
           clearTextOnFocus
-          autoCompleteType
+          autoCompleteType="street-address"
           returnKeyType="next"
         />
         <TextInput
           style={styles.textInput}
           placeholder="Enter your destination..."
           onChangeText={text => this.setState({ destination: text })}
-          autoCompleteType
-          returnKeyLabel="enter"
+          autoCompleteType="street-address"
+          returnKeyType="go"
+          onSubmitEditing={() => {
+            this.makeTrip();
+          }}
         />
         <TouchableOpacity onPress={() => this.makeTrip()} style={styles.button}>
           <Text style={styles.buttonText}>Make Trip</Text>
