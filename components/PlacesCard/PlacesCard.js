@@ -29,13 +29,12 @@ export default function PlacesCard(props) {
         let weather = place.weather.icon;
         if (trip.legs[index]) {
           return (
-            <View key={Math.random()}>
+            <View key={place.id}>
               <ImageBackground
-                imageStyle={{ borderRadius: 20, opacity:0.7 }}
+                imageStyle={{ borderRadius: 20, opacity: 0.7 }}
                 source={{ uri: weatherList[weather] }}
                 key={place.name}
                 style={styles.image}
-               
               >
                 <TouchableOpacity
                   onPress={() =>
@@ -64,11 +63,10 @@ export default function PlacesCard(props) {
           return (
             <View key={Math.random()} style={{ marginBottom: 30 }}>
               <ImageBackground
-                imageStyle={{ borderRadius: 20, opacity:0.75 }}
+                imageStyle={{ borderRadius: 20, opacity: 0.75 }}
                 source={{ uri: weatherList[weather] }}
                 key={place.name}
                 style={styles.image}
-                
               >
                 <TouchableOpacity
                   onPress={() =>
@@ -94,10 +92,11 @@ export default function PlacesCard(props) {
 
 const styles = StyleSheet.create({
   name: {
-    color: "black",
-    textShadowColor: "rgba(255, 255, 255, 0.3)",
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 30,
+    color: "white",
+    shadowColor: "#000",
+    shadowOffset: { width: -1, height: 1 },
+    shadowOpacity: 0.9,
+    shadowRadius: 10,
     fontSize: 35,
     fontFamily: "Optima",
     fontWeight: "bold",
@@ -106,17 +105,27 @@ const styles = StyleSheet.create({
     opacity: 5
   },
   weather: {
-    color: "black",
+    color: "white",
     fontFamily: "Optima",
     fontWeight: "bold",
     position: "absolute",
     right: 20,
     top: 20,
-    fontSize: 35
+    fontSize: 35,
+    //
+    shadowColor: "#000",
+    shadowOpacity: 0.9,
+    shadowRadius: 10,
+    shadowOffset: { width: -1, height: 1 }
   },
   summary: {
+    color: "white",
     paddingLeft: 20,
-    fontSize: 25
+    fontSize: 25,
+    shadowColor: "#000",
+    shadowOpacity: 0.9,
+    shadowRadius: 10,
+    shadowOffset: { width: -1, height: 1 }
   },
   image: {
     width: "98%",
@@ -125,10 +134,10 @@ const styles = StyleSheet.create({
     marginRight: "auto",
     marginBottom: 0,
     marginLeft: "auto",
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
-    shadowRadius: 2,
+    shadowRadius: 2
   },
   legs: {
     flexDirection: "row",
