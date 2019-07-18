@@ -12,7 +12,10 @@ import { cityImages } from "../../assets/cityImages";
 export default class Place extends Component {
   constructor(props) {
     super(props);
-    this.state = { randomCity: "https://livability.com/sites/default/files/Charlotte-NC-Skyline.jpg" };
+    this.state = {
+      randomCity:
+        "https://livability.com/sites/default/files/Charlotte-NC-Skyline.jpg"
+    };
   }
 
   componentDidMount = () => {
@@ -35,13 +38,22 @@ export default class Place extends Component {
   };
 
   render() {
+    const { navigation } = this.props;
+    const place = navigation.getParam("placeData");
     return (
       <ImageBackground
         style={styles.backGround}
         source={{ uri: this.state.randomCity }}
-        imageStyle={{opacity:0.2}}
+        imageStyle={{ opacity: 0.2 }}
       >
-        <Text>stuff</Text>
+        <Text style={styles.city}>{place.name}</Text>
+        <Text style={styles.placeInfo}>Population: {place.population}</Text>
+        <Text style={styles.placeInfo}>
+          Forcasted Weather: {place.weather.summary}
+        </Text>
+        <Text style={styles.placeInfo}>{`Percipitation chance: ${Math.round(
+          place.weather.precipProbability * 100
+        )}%`}</Text>
       </ImageBackground>
     );
   }
@@ -51,6 +63,12 @@ const styles = StyleSheet.create({
   backGround: {
     width: "100%",
     height: "100%",
-    backgroundColor: '#FFFFFF50',
+    backgroundColor: "#FFFFFF50"
+  },
+  city: {
+    fontSize: 54
+  },
+  placeInfo: {
+    fontSize: 25
   }
 });
