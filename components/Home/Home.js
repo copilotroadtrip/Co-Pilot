@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   ImageBackground
 } from "react-native";
-import Header from "../Header/Header";
 import PlacesCard from "../PlacesCard/PlacesCard";
 
 export default class Home extends Component {
@@ -338,7 +337,7 @@ export default class Home extends Component {
       position => {
         const location = position;
         this.setState({
-          origin: `${location.coords.latitude} ${location.coords.longitude}`
+          origin: `${location.coords.latitude}, ${location.coords.longitude}`
         });
       },
       error => console.log(error.message),
