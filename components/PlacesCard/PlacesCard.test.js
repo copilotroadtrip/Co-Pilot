@@ -1,33 +1,44 @@
 import React from "react";
 import NavigationTestUtils from "react-navigation/NavigationTestUtils";
-import renderer from "react-test-renderer";
-import mockTrip from "../../utilities/mockTrips.js";
+import { mockTrip } from "../../utilities/mockTrips.js";
 import { shallow } from "enzyme";
 
 import PlacesCard from "./PlacesCard";
 
 describe("PlaceCard", () => {
   NavigationTestUtils.resetInternalState();
-  let expected;
-  const spyNav = jest.fn();
-  const state = {
-    trip: mockTrip
-  };
-  const props = {
+  let wrapper;
+  const createTestProps = props => ({
     navigation: {
-      navigate: spyNav,
-      getParam: jest.fn(mockTrip)
-    }
-  };
-  // const params = {
-  //   token: "random"
-  // };
+      state: { params: {} },
+      dispatch: jest.fn(),
+      goBack: jest.fn(),
+      dismiss: jest.fn(),
+      navigate: jest.fn(),
+      openDrawer: jest.fn(),
+      closeDrawer: jest.fn(),
+      toggleDrawer: jest.fn(),
+      getParam: jest.fn(() => {
+        return mockTrip;
+      }),
+      setParams: jest.fn(),
+      addListener: jest.fn(),
+      push: jest.fn(),
+      replace: jest.fn(),
+      pop: jest.fn(),
+      popToTop: jest.fn(),
+      isFocused: jest.fn()
+    },
+    ...props
+  });
+
   beforeEach(() => {
-    expected = shallow(<PlacesCard {...props} state={state} />);
-    // expected.setState({ params: params });
+    const trips = { places: mockTrip.places, legs: mockTrip.legs };
+    props = createTestProps({ trips });
+    wrapper = shallow(<PlacesCard {...props} />);
   });
 
   it(`matches snapshot`, () => {
-    expect(expected).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 });
