@@ -1,11 +1,28 @@
 import React from "react";
-import Place from "./Place";
-import { shallow, mount } from "enzyme";
-import renderer from "react-test-renderer";
+import NavigationTestUtils from "react-navigation/NavigationTestUtils";
+import { mockTrip } from "../../utilities/mockTrips.js";
+import { shallow } from "enzyme";
 
-describe("Place", () => {
-  it("should match snapshot", () => {
-    const wrapper = shallow(<Place />);
+import Place from "./Place";
+
+describe("PlaceCard", () => {
+  NavigationTestUtils.resetInternalState();
+  let wrapper;
+  const createTestProps = props => ({
+    navigation: {
+      getParam: jest.fn(() => {
+        return mockTrip.places[0];
+      })
+    },
+    ...props
+  });
+
+  beforeEach(() => {
+    props = createTestProps({});
+    wrapper = shallow(<Place {...props} />);
+  });
+
+  it(`matches snapshot`, () => {
     expect(wrapper).toMatchSnapshot();
   });
 });

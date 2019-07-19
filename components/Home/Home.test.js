@@ -1,11 +1,31 @@
 import React from "react";
-import Home from "./Home";
-import { shallow, mount } from "enzyme";
-import renderer from "react-test-renderer";
+import NavigationTestUtils from "react-navigation/NavigationTestUtils";
+import { mockTrip } from "../../utilities/mockTrips.js";
+import { shallow } from "enzyme";
 
-describe("Home", () => {
-  it("should match snapshot", () => {
-    const wrapper = shallow(<Home />);
+import Home from "./Home";
+
+describe("PlaceCard", () => {
+  NavigationTestUtils.resetInternalState();
+  let wrapper;
+  const createTestProps = props => ({
+    navigation: {
+      navigate: jest.fn()
+    },
+    ...props
+  });
+
+  const mockGeolocator = {
+    getCurrentPosition: jest.fn()
+  };
+
+  beforeEach(() => {
+    global.navigator.geolocation = mockGeolocator;
+    props = createTestProps({});
+    wrapper = shallow(<Home {...props} />);
+  });
+
+  it(`matches snapshot`, () => {
     expect(wrapper).toMatchSnapshot();
   });
 });
