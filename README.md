@@ -24,10 +24,23 @@ to build this project.
 
 ## Screenshots
 
-
 <img src="https://user-images.githubusercontent.com/42000931/61581737-3f6c4580-aadf-11e9-902e-8bcb72d48e07.jpeg" width="300" height="600" />
 <img src="https://user-images.githubusercontent.com/42000931/61581726-2368a400-aadf-11e9-92dc-9ad326184bc0.jpeg" width="300" height="600" />
 <img src="https://user-images.githubusercontent.com/42000931/61581729-2c597580-aadf-11e9-8539-12121fe004dc.jpeg" width="300" height="600" />
+
+## Contributors:
+
+### Front End:
+
+[Theo Bean](https://github.com/b3an5)
+
+[Saad Baradan](https://github.com/saadricklamar)
+
+### Back End:
+
+[William Peterson](https://github.com/wipegup)
+
+[Matt Levy](https://github.com/milevy1)
 
 
 
