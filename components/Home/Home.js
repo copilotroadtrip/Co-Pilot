@@ -389,7 +389,7 @@ export default class Home extends Component {
   static navigationOptions = {
     title: "Co-Pilot",
     headerStyle: {
-      backgroundColor: "#296B6E"
+      backgroundColor: '#3591B4'
     },
     headerTintColor: "#fff",
     headerTitleStyle: {
@@ -457,7 +457,7 @@ const styles = StyleSheet.create({
   button: {
     width: 250,
     height: 60,
-    backgroundColor: "#296B6E",
+    backgroundColor: '#3591B4',
     marginTop: 10,
     borderRadius: 10
   },
