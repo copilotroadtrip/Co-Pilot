@@ -1,8 +1,8 @@
 # Co-Pilot
 
 **Co-Pilot** is a full stack application that allows users who are road tripping to keep track of all the cities and towns they
-will encounter on their journey. Information regarding the weather, distance, and time is displayed between each city. And upon 
-clicking a particular city users can find hotel, gas, food, and google maps information. 
+will encounter on their journey. Information regarding the distance and time is displayed between each city. And upon 
+clicking a particular city users can find weather, hotel, gas, food, and google maps information. 
 
 The Co-Pilot back end can be found [here](https://github.com/copilotroadtrip/CoPilotBackend).
 
