@@ -10,6 +10,8 @@ import {
 import { weatherList } from "../../assets/backgroundImages";
 import Place from "../Place/Place";
 
+
+
 export default function PlacesCard(props) {
   const { navigation } = props;
   const trip = navigation.getParam("trip", "loading");
@@ -22,6 +24,8 @@ export default function PlacesCard(props) {
       sign + (hour < 10 ? "0" : "") + hour + ":" + (min < 10 ? "0" : "") + min
     );
   };
+
+  
 
   return (
     <ScrollView style={styles.view}>
@@ -157,3 +161,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5FCFF"
   }
 });
+
+

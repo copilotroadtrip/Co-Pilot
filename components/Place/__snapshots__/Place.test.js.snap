@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PlaceCard matches snapshot 1`] = `ShallowWrapper {}`;
+exports[`Place matches snapshot 1`] = `ShallowWrapper {}`;

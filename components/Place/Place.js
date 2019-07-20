@@ -8,13 +8,7 @@ import {
   Linking
 } from "react-native";
 import { weatherList } from "../../assets/backgroundImages";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {
-  faBed,
-  faGasPump,
-  faUtensils,
-  faDirections
-} from "@fortawesome/free-solid-svg-icons";
+import { Icon } from "react-native-elements";
 
 export default function Place(props) {
   const { navigation } = props;
@@ -36,7 +30,15 @@ export default function Place(props) {
             Linking.openURL(`https://www.yelp.com/c/${name}/hotels`)
           }
         >
-          <FontAwesomeIcon size={90} style={styles.icon} icon={faBed} />
+          <Icon
+            name="hotel"
+            size={90}
+            marginTop={40}
+            marginRight="auto"
+            marginBottom={0}
+            marginLeft="auto"
+            color="#30C2EC"
+          />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
@@ -48,7 +50,15 @@ export default function Place(props) {
             )
           }
         >
-          <FontAwesomeIcon size={90} style={styles.icon} icon={faGasPump} />
+          <Icon
+            name="local-gas-station"
+            size={90}
+            marginTop={40}
+            marginRight="auto"
+            marginBottom={0}
+            marginLeft="auto"
+            color="#30C2EC"
+          />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
@@ -60,13 +70,29 @@ export default function Place(props) {
             )
           }
         >
-          <FontAwesomeIcon size={90} style={styles.icon} icon={faUtensils} />
+          <Icon
+            name="restaurant"
+            size={90}
+            marginTop={40}
+            marginRight="auto"
+            marginBottom={0}
+            marginLeft="auto"
+            color="#30C2EC"
+          />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => Linking.openURL("https://www.google.com/maps")}
         >
-          <FontAwesomeIcon size={90} style={styles.icon} icon={faDirections} />
+          <Icon
+            name="directions"
+            size={90}
+            marginTop={40}
+            marginRight="auto"
+            marginBottom={0}
+            marginLeft="auto"
+            color="#30C2EC"
+          />
         </TouchableOpacity>
       </View>
     </ImageBackground>
@@ -128,13 +154,5 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     flexWrap: "wrap",
     marginTop: 250
-  },
-  icon: {
-    marginTop: 40,
-    marginRight: "auto",
-    marginBottom: 0,
-    marginLeft: "auto",
-    color: "white",
-    color: "#30C2EC"
   }
 });

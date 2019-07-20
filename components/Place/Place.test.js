@@ -5,7 +5,8 @@ import { shallow } from "enzyme";
 
 import Place from "./Place";
 
-describe("PlaceCard", () => {
+
+describe("Place", () => {
   NavigationTestUtils.resetInternalState();
   let wrapper;
   const createTestProps = props => ({
@@ -18,6 +19,7 @@ describe("PlaceCard", () => {
   });
 
   beforeEach(() => {
+   
     props = createTestProps({});
     wrapper = shallow(<Place {...props} />);
   });
