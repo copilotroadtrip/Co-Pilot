@@ -5,10 +5,12 @@ import {
   View,
   ImageBackground,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  Image
 } from "react-native";
 import { weatherList } from "../../assets/backgroundImages";
 import Place from "../Place/Place";
+import { weatherIcons } from "../../assets/weatherIcons";
 
 export default function PlacesCard(props) {
   const { navigation } = props;
@@ -24,17 +26,22 @@ export default function PlacesCard(props) {
   };
 
   return (
-    <ScrollView style={styles.view}>
+    <ScrollView>
       {trip.places.map((place, index) => {
         let weather = place.weather.icon;
-        if (trip.legs[index]) {
+        if (
+          trip.legs[index] &&
+          (place.weather === "tornado" ||
+            place.weather === "hail" ||
+            place.weather === "sleet")
+        ) {
           return (
-            <View key={place.id}>
+            <View key={place.id} style={styles.view}>
               <ImageBackground
                 imageStyle={{ borderRadius: 20, opacity: 0.7 }}
-                source={{ uri: weatherList[weather] }}
                 key={place.name}
                 style={styles.image}
+                backgroundColor="red"
               >
                 <TouchableOpacity
                   onPress={() =>
@@ -42,12 +49,83 @@ export default function PlacesCard(props) {
                       placeData: place
                     })
                   }
+                  style={styles.cardContent}
                 >
                   <Text style={styles.name}>{place.name}</Text>
-                  <Text style={styles.weather}>
-                    {place.weather.temperature + "\u2109"}
-                  </Text>
-                  <Text style={styles.summary}>{place.weather.summary}</Text>
+                  <Image
+                    source={{ uri: weatherIcons[weather] }}
+                    style={styles.summary}
+                  />
+                </TouchableOpacity>
+              </ImageBackground>
+              <View style={styles.legs}>
+                <Text style={styles.arrow}>{"\u2193"}</Text>
+                <Text style={styles.distance}>{trip.legs[index].distance}</Text>
+                <Text style={styles.hours}>
+                  {hoursToNextPlace(trip.legs[index].duration_in_hours) + "hrs"}
+                </Text>
+              </View>
+            </View>
+          );
+        }
+        if (
+          trip.legs[index] &&
+          (place.weather === "snow" || place.weather === "thunderstorm")
+        ) {
+          return (
+            <View key={place.id} style={styles.view}>
+              <ImageBackground
+                imageStyle={{ borderRadius: 20, opacity: 0.7 }}
+                key={place.name}
+                style={styles.image}
+                backgroundColor="yellow"
+              >
+                <TouchableOpacity
+                  onPress={() =>
+                    props.navigation.navigate("Place", {
+                      placeData: place
+                    })
+                  }
+                  style={styles.cardContent}
+                >
+                  <Text style={styles.name}>{place.name}</Text>
+                  <Image
+                    source={{ uri: weatherIcons[weather] }}
+                    style={styles.summary}
+                  />
+                </TouchableOpacity>
+              </ImageBackground>
+              <View style={styles.legs}>
+                <Text style={styles.arrow}>{"\u2193"}</Text>
+                <Text style={styles.distance}>{trip.legs[index].distance}</Text>
+                <Text style={styles.hours}>
+                  {hoursToNextPlace(trip.legs[index].duration_in_hours) + "hrs"}
+                </Text>
+              </View>
+            </View>
+          );
+        } else if (trip.legs[index]) {
+          return (
+            <View key={place.id} style={styles.view}>
+              <ImageBackground
+                imageStyle={{ borderRadius: 20, opacity: 0.7 }}
+                key={place.name}
+                style={styles.image}
+                backgroundColor="green"
+              >
+                <TouchableOpacity
+                  onPress={() =>
+                    props.navigation.navigate("Place", {
+                      placeData: place
+                    })
+                  }
+                  style={styles.cardContent}
+                >
+                  <Text style={styles.name}>{place.name}</Text>
+                  <Image
+                    source={{ uri: weatherIcons[weather] }}
+                    style={styles.summary}
+                  />
                 </TouchableOpacity>
               </ImageBackground>
               <View style={styles.legs}>
@@ -60,30 +138,90 @@ export default function PlacesCard(props) {
             </View>
           );
         } else {
-          return (
-            <View key={Math.random()} style={{ marginBottom: 30 }}>
-              <ImageBackground
-                imageStyle={{ borderRadius: 20, opacity: 0.75 }}
-                source={{ uri: weatherList[weather] }}
-                key={place.name}
-                style={styles.image}
-              >
-                <TouchableOpacity
-                  onPress={() =>
-                    props.navigation.navigate("Place", {
-                      place: place
-                    })
-                  }
+          if (
+            place.weather === "tornado" ||
+            place.weather === "hail" ||
+            place.weather === "sleet"
+          ) {
+            return (
+              <View key={Math.random()} style={{ marginBottom: 30 }}>
+                <ImageBackground
+                  imageStyle={{ borderRadius: 20, opacity: 0.7 }}
+                  key={place.name}
+                  style={styles.image}
+                  backgroundColor="red"
                 >
-                  <Text style={styles.name}>{place.name}</Text>
-                  <Text style={styles.weather}>
-                    {place.weather.temperature + "\u2109"}
-                  </Text>
-                  <Text style={styles.summary}>{place.weather.summary}</Text>
-                </TouchableOpacity>
-              </ImageBackground>
-            </View>
-          );
+                  <TouchableOpacity
+                    onPress={() =>
+                      props.navigation.navigate("Place", {
+                        placeData: place
+                      })
+                    }
+                    style={styles.cardContent}
+                  >
+                    <Text style={styles.name}>{place.name}</Text>
+                    <Image
+                      source={{ uri: weatherIcons[weather] }}
+                      style={styles.summary}
+                    />
+                  </TouchableOpacity>
+                </ImageBackground>
+              </View>
+            );
+          }
+          if (place.weather === "snow" || place.weather === "thunderstorm") {
+            return (
+              <View key={Math.random()} style={{ marginBottom: 30 }}>
+                <ImageBackground
+                  imageStyle={{ borderRadius: 20, opacity: 0.7 }}
+                  key={place.name}
+                  style={styles.image}
+                  backgroundColor="yellow"
+                >
+                  <TouchableOpacity
+                    onPress={() =>
+                      props.navigation.navigate("Place", {
+                        placeData: place
+                      })
+                    }
+                    style={styles.cardContent}
+                  >
+                    <Text style={styles.name}>{place.name}</Text>
+                    <Image
+                      source={{ uri: weatherIcons[weather] }}
+                      style={styles.summary}
+                    />
+                  </TouchableOpacity>
+                </ImageBackground>
+              </View>
+            );
+          } else {
+            return (
+              <View key={Math.random()} style={{ marginBottom: 30 }}>
+                <ImageBackground
+                  imageStyle={{ borderRadius: 20, opacity: 0.7 }}
+                  key={place.name}
+                  style={styles.image}
+                  backgroundColor="green"
+                >
+                  <TouchableOpacity
+                    onPress={() =>
+                      props.navigation.navigate("Place", {
+                        placeData: place
+                      })
+                    }
+                    style={styles.cardContent}
+                  >
+                    <Text style={styles.name}>{place.name}</Text>
+                    <Image
+                      source={{ uri: weatherIcons[weather] }}
+                      style={styles.summary}
+                    />
+                  </TouchableOpacity>
+                </ImageBackground>
+              </View>
+            );
+          }
         }
       })}
     </ScrollView>
@@ -97,39 +235,24 @@ const styles = StyleSheet.create({
     shadowOffset: { width: -1, height: 1 },
     shadowOpacity: 0.9,
     shadowRadius: 10,
-    fontSize: 35,
+    fontSize: 37,
     fontFamily: "Optima",
     fontWeight: "bold",
-    paddingTop: 100,
-    paddingLeft: 20,
     opacity: 5
   },
-  weather: {
-    color: "white",
-    fontFamily: "Optima",
-    fontWeight: "bold",
-    position: "absolute",
-    right: 20,
-    top: 20,
-    fontSize: 35,
-    //
-    shadowColor: "#000",
-    shadowOpacity: 0.9,
-    shadowRadius: 10,
-    shadowOffset: { width: -1, height: 1 }
+  cardContent: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around"
   },
   summary: {
-    color: "white",
-    paddingLeft: 20,
-    fontSize: 25,
-    shadowColor: "#000",
-    shadowOpacity: 0.9,
-    shadowRadius: 10,
-    shadowOffset: { width: -1, height: 1 }
+    height: 55,
+    width: 55
   },
   image: {
-    width: "98%",
-    height: 200,
+    width: "99.5%",
+    height: 100,
     marginTop: 10,
     marginRight: "auto",
     marginBottom: 0,
@@ -145,15 +268,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-around"
   },
   arrow: {
-    fontSize: 30
+    fontSize: 40
   },
   distance: {
-    fontSize: 30
+    fontSize: 40
   },
   hours: {
-    fontSize: 30
+    fontSize: 40
   },
   view: {
-    backgroundColor: "#F5FCFF"
+    backgroundColor: "#F5FCFF",
+    alignItems: "center"
   }
 });
