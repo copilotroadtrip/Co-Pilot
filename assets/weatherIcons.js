@@ -1,0 +1,28 @@
+export const weatherIcons = {
+  clear_day:
+    "http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/32/Status-weather-clear-icon.png",
+  clear_night:
+    "http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/32/Status-weather-clear-night-icon.png",
+  rain:
+    "http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/32/Status-weather-showers-icon.png",
+  snow:
+    "http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/32/Status-weather-snow-icon.png",
+  sleet:
+    "http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/32/Status-weather-snow-rain-icon.png",
+  wind:
+    "http://icons.iconarchive.com/icons/handdrawngoods/sunny-weather/32/07-wind-breeze-icon.png",
+  fog:
+    "http://icons.iconarchive.com/icons/custom-icon-design/weather/32/fog-icon.png",
+  cloudy:
+    "http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/32/Status-weather-many-clouds-icon.png",
+  partly_cloudy_day:
+    "http://icons.iconarchive.com/icons/large-icons/large-weather/32/partly-cloudy-day-icon.png",
+  partly_cloudy_night:
+    "http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/32/Status-weather-clouds-night-icon.png",
+  hail:
+    "http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/32/Status-weather-hail-icon.png",
+  thunderstorm:
+    "http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/32/Status-weather-storm-night-icon.png",
+  tornado:
+    "http://icons.iconarchive.com/icons/large-icons/large-weather/32/tornado-icon.png"
+};
