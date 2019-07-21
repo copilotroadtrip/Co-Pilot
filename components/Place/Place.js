@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,93 +10,114 @@ import {
 import { weatherList } from "../../assets/backgroundImages";
 import { Icon } from "react-native-elements";
 
-export default function Place(props) {
-  const { navigation } = props;
-  const place = navigation.getParam("placeData");
-  let name = place.name.toLowerCase();
-  return (
-    <ImageBackground
-      style={styles.backGround}
-      source={{ uri: weatherList[place.weather.icon] }}
-      imageStyle={{ opacity: 0.5 }}
-    >
-      <Text style={styles.city}>{place.name}</Text>
-      <Text style={styles.placeInfo}>{place.weather.summary}</Text>
-      <Text style={styles.weather}>{place.weather.temperature + "\u2109"}</Text>
-      <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() =>
-            Linking.openURL(`https://www.yelp.com/c/${name}/hotels`)
-          }
-        >
-          <Icon
-            name="hotel"
-            size={90}
-            marginTop={40}
-            marginRight="auto"
-            marginBottom={0}
-            marginLeft="auto"
-            color="#30C2EC"
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() =>
-            Linking.openURL(
-              `https://www.yelp.com/search?find_desc=Gas+Stations&find_loc=${
-                place.name
-              }%2C+CO`
-            )
-          }
-        >
-          <Icon
-            name="local-gas-station"
-            size={90}
-            marginTop={40}
-            marginRight="auto"
-            marginBottom={0}
-            marginLeft="auto"
-            color="#30C2EC"
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() =>
-            Linking.openURL(
-              `https://www.yelp.com/search?find_desc=Restaurants&find_loc=${
-                place.name
-              }%2C%20CO`
-            )
-          }
-        >
-          <Icon
-            name="restaurant"
-            size={90}
-            marginTop={40}
-            marginRight="auto"
-            marginBottom={0}
-            marginLeft="auto"
-            color="#30C2EC"
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => Linking.openURL("https://www.google.com/maps")}
-        >
-          <Icon
-            name="directions"
-            size={90}
-            marginTop={40}
-            marginRight="auto"
-            marginBottom={0}
-            marginLeft="auto"
-            color="#30C2EC"
-          />
-        </TouchableOpacity>
-      </View>
-    </ImageBackground>
-  );
+export default class Place extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  static navigationOptions = {
+    title: "Place",
+    headerStyle: {
+      backgroundColor: "#3591B4"
+    },
+    headerTintColor: "#fff",
+    headerTitleStyle: {
+      fontWeight: "bold",
+      fontFamily: "Marker Felt",
+      fontSize: 20
+    }
+  };
+
+  render() {
+    const { navigation } = this.props;
+    const place = navigation.getParam("placeData");
+    let name = place.name.toLowerCase();
+    return (
+      <ImageBackground
+        style={styles.backGround}
+        source={{ uri: weatherList[place.weather.icon] }}
+        imageStyle={{ opacity: 0.5 }}
+      >
+        <Text style={styles.city}>{place.name}</Text>
+        <Text style={styles.placeInfo}>{place.weather.summary}</Text>
+        <Text style={styles.weather}>
+          {place.weather.temperature + "\u2109"}
+        </Text>
+        <View style={styles.container}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() =>
+              Linking.openURL(`https://www.yelp.com/c/${name}/hotels`)
+            }
+          >
+            <Icon
+              name="hotel"
+              size={90}
+              marginTop={40}
+              marginRight="auto"
+              marginBottom={0}
+              marginLeft="auto"
+              color="#30C2EC"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() =>
+              Linking.openURL(
+                `https://www.yelp.com/search?find_desc=Gas+Stations&find_loc=${
+                  place.name
+                }%2C+CO`
+              )
+            }
+          >
+            <Icon
+              name="local-gas-station"
+              size={90}
+              marginTop={40}
+              marginRight="auto"
+              marginBottom={0}
+              marginLeft="auto"
+              color="#30C2EC"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() =>
+              Linking.openURL(
+                `https://www.yelp.com/search?find_desc=Restaurants&find_loc=${
+                  place.name
+                }%2C%20CO`
+              )
+            }
+          >
+            <Icon
+              name="restaurant"
+              size={90}
+              marginTop={40}
+              marginRight="auto"
+              marginBottom={0}
+              marginLeft="auto"
+              color="#30C2EC"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => Linking.openURL("https://www.google.com/maps")}
+          >
+            <Icon
+              name="directions"
+              size={90}
+              marginTop={40}
+              marginRight="auto"
+              marginBottom={0}
+              marginLeft="auto"
+              color="#30C2EC"
+            />
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
