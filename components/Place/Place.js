@@ -18,7 +18,7 @@ export default class Place extends Component {
   static navigationOptions = {
     title: "Place",
     headerStyle: {
-      backgroundColor: "#3591B4"
+      backgroundColor: "#278DC3"
     },
     headerTintColor: "#fff",
     headerTitleStyle: {
@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
   },
   city: {
     fontSize: 70,
+    paddingTop: 30,
     textAlign: "center",
     fontFamily: "Optima",
     fontWeight: "bold",
