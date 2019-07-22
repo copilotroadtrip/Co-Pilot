@@ -8,7 +8,7 @@ import {
   StyleSheet
 } from "react-native";
 import { weatherIcons } from "../../assets/weatherIcons";
-import { Badge } from "react-native-elements";
+import { Badge, Icon, Avatar } from "react-native-elements";
 
 export default function PlacesCardWithLeg(props) {
   let { place, index, color, weather, trip, hoursToNextPlace } = props;
@@ -37,7 +37,6 @@ export default function PlacesCardWithLeg(props) {
       </ImageBackground>
       <View style={styles.legs}>
         <Text style={styles.arrow}>{"\u2193"}</Text>
-        {/* <Badge value={trip.legs[index].distance} size='large' color='blue'/> */}
         <Text style={styles.distance}>{trip.legs[index].distance}</Text>
         <Text style={styles.hours}>
           {hoursToNextPlace(trip.legs[index].duration_in_hours)}
@@ -66,7 +65,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     borderColor: "white",
     borderWidth: 1,
-    borderRadius: 10
+    borderRadius: 10,
   },
   summary: {
     height: 55,
@@ -78,7 +77,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginRight: "auto",
     marginBottom: 0,
-    marginLeft: "auto",
+    marginLeft: 'auto',
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
@@ -87,16 +86,20 @@ const styles = StyleSheet.create({
   legs: {
     flexDirection: "row",
     width: "100%",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
   },
   arrow: {
     fontSize: 40
   },
   distance: {
-    fontSize: 40
+    fontSize: 40,
+    fontFamily: "Optima",
+    fontWeight: "bold",
   },
   hours: {
-    fontSize: 40
+    fontSize: 40,
+    fontFamily: "Optima",
+    fontWeight: "bold",
   },
   view: {
     alignItems: "center"

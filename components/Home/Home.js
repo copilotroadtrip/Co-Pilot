@@ -5,7 +5,8 @@ import {
   TextInput,
   TouchableOpacity,
   ImageBackground,
-  View
+  View,
+  ActivityIndicator
 } from "react-native";
 
 export default class Home extends Component {
@@ -35,7 +36,7 @@ export default class Home extends Component {
   };
 
   makeTrip = async () => {
-    console.log(this.state.origin)
+    this.setState({ isLoading: true });
     try {
       const response = await fetch(
         "https://copilot-backend.herokuapp.com/api/v1/trips",
@@ -51,13 +52,13 @@ export default class Home extends Component {
         }
       );
       const newTrip = await response.json();
-      this.setState({ trip: newTrip.data });
+      this.setState({ trip: newTrip.data, isLoading: false });
+      this.props.navigation.navigate("PlacesCard", {
+        trip: this.state.trip
+      });
     } catch (error) {
       this.setState({ error: error.message });
     }
-    this.props.navigation.navigate("PlacesCard", {
-      trip: this.state.trip
-    });
   };
 
   static navigationOptions = {
@@ -74,12 +75,8 @@ export default class Home extends Component {
   };
 
   render() {
-    return (
-      <ImageBackground
-        style={styles.backGround}
-        source={require("../../assets/roadtrip1.jpeg")}
-      >
-        <View style={styles.form}>
+    let form = (
+      <View style={styles.form}>
         <TextInput
           style={styles.textInput}
           placeholder="Current Location"
@@ -104,7 +101,18 @@ export default class Home extends Component {
         <TouchableOpacity onPress={() => this.makeTrip()} style={styles.button}>
           <Text style={styles.buttonText}>Make Trip</Text>
         </TouchableOpacity>
-        </View>
+      </View>
+    );
+
+    return (
+      <ImageBackground
+        style={styles.backGround}
+        source={require("../../assets/roadtrip1.jpeg")}
+      >
+        {!this.state.isLoading && form}
+        {this.state.isLoading && (
+          <ActivityIndicator size="large" color="#E9651A"/>
+        )}
       </ImageBackground>
     );
   }
@@ -113,9 +121,9 @@ export default class Home extends Component {
 const styles = StyleSheet.create({
   form: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 150,
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 150
   },
   textInput: {
     width: 250,
@@ -142,8 +150,7 @@ const styles = StyleSheet.create({
     height: 60,
     backgroundColor: "#278DC3",
     marginTop: 10,
-    borderRadius: 10,
-    
+    borderRadius: 10
   },
   buttonText: {
     color: "white",

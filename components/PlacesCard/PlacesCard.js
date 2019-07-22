@@ -22,7 +22,7 @@ export default class PlacesCard extends Component {
     var sign = hours < 0 ? "-" : "";
     var hour = Math.floor(Math.abs(hours));
     var min = Math.floor((Math.abs(hours) * 60) % 60);
-    return sign + (hour === 0 ? "" : hour + "hr :") + min + "min";
+    return sign + (hour === 0 ? "" : hour + "hr:") + min + "min";
   };
 
   static navigationOptions = {
@@ -140,7 +140,7 @@ export default class PlacesCard extends Component {
                 return (
                   <PlaceCardWithoutLeg
                     place={place}
-                    color={"green"}
+                    color={"yellow"}
                     weather={weather}
                     navigation={navigation}
                     key={place.id}

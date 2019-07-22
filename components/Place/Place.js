@@ -38,16 +38,18 @@ export default class Place extends Component {
         source={{ uri: weatherList[place.weather.icon] }}
         imageStyle={{ opacity: 0.5 }}
       >
+        <View style={styles.info}>
         <Text style={styles.city}>{place.name}</Text>
         <Text style={styles.placeInfo}>{place.weather.summary}</Text>
         <Text style={styles.weather}>
-          {place.weather.temperature + "\u2109"}
+          {Math.round(place.weather.temperature) + "\u2109"}
         </Text>
+        </View>
         <View style={styles.container}>
           <TouchableOpacity
             style={styles.button}
             onPress={() =>
-              Linking.openURL(`https://www.yelp.com/c/${name}/hotels`)
+              Linking.openURL(`https://www.google.com/maps/search/Hotels+${name}`)
             }
           >
             <Icon
@@ -57,16 +59,14 @@ export default class Place extends Component {
               marginRight="auto"
               marginBottom={0}
               marginLeft="auto"
-              color="#30C2EC"
+              color="white"
             />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
             onPress={() =>
               Linking.openURL(
-                `https://www.yelp.com/search?find_desc=Gas+Stations&find_loc=${
-                  place.name
-                }%2C+CO`
+                `https://www.google.com/maps/search/Gas+Stations+${name}`
               )
             }
           >
@@ -77,7 +77,7 @@ export default class Place extends Component {
               marginRight="auto"
               marginBottom={0}
               marginLeft="auto"
-              color="#30C2EC"
+              color="#D3342C"
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -86,7 +86,7 @@ export default class Place extends Component {
               Linking.openURL(
                 `https://www.yelp.com/search?find_desc=Restaurants&find_loc=${
                   place.name
-                }%2C%20CO`
+                }`
               )
             }
           >
@@ -97,7 +97,7 @@ export default class Place extends Component {
               marginRight="auto"
               marginBottom={0}
               marginLeft="auto"
-              color="#30C2EC"
+              color='#767574'  
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -111,7 +111,7 @@ export default class Place extends Component {
               marginRight="auto"
               marginBottom={0}
               marginLeft="auto"
-              color="#30C2EC"
+              color="yellow"
             />
           </TouchableOpacity>
         </View>
@@ -121,6 +121,11 @@ export default class Place extends Component {
 }
 
 const styles = StyleSheet.create({
+  info: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   backGround: {
     width: "100%",
     height: "100%"
@@ -144,9 +149,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 70,
     shadowColor: "#000",
-    position: "absolute",
-    top: 150,
-    left: 100,
     shadowOpacity: 0.9,
     shadowRadius: 10,
     shadowOffset: { width: -1, height: 1 }
@@ -165,7 +167,7 @@ const styles = StyleSheet.create({
   button: {
     margin: 5,
     width: "45%",
-    height: "40%",
+    height: "45%",
     backgroundColor: "#296B6E",
     backgroundColor: "#084581",
     borderRadius: 10
@@ -175,6 +177,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     flexWrap: "wrap",
-    marginTop: 250
+   
   }
 });
