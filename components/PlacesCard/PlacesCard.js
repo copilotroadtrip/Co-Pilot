@@ -75,6 +75,7 @@ export default class PlacesCard extends Component {
                   hoursToNextPlace={this.hoursToNextPlace}
                   weather={weather}
                   trip={trip}
+                  navigation={navigation}
                 />
               );
             }
@@ -90,6 +91,7 @@ export default class PlacesCard extends Component {
                   hoursToNextPlace={this.hoursToNextPlace}
                   weather={weather}
                   trip={trip}
+                  navigation={navigation}
                 />
               );
             } else if (trip.legs[index]) {
@@ -101,6 +103,7 @@ export default class PlacesCard extends Component {
                   hoursToNextPlace={this.hoursToNextPlace}
                   weather={weather}
                   trip={trip}
+                  navigation={navigation}
                 />
               );
             } else {
@@ -114,6 +117,7 @@ export default class PlacesCard extends Component {
                     place={place}
                     color={"red"}
                     weather={weather}
+                    navigation={navigation}
                   />
                 );
               }
@@ -126,6 +130,7 @@ export default class PlacesCard extends Component {
                     place={place}
                     color={"yellow"}
                     weather={weather}
+                    navigation={navigation}
                   />
                 );
               } else {
@@ -134,6 +139,7 @@ export default class PlacesCard extends Component {
                     place={place}
                     color={"green"}
                     weather={weather}
+                    navigation={navigation}
                   />
                 );
               }

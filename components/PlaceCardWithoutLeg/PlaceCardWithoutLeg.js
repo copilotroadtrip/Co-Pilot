@@ -21,7 +21,7 @@ export default function PlacesCardWithLeg(props) {
       >
         <TouchableOpacity
           onPress={() =>
-            this.props.navigation.navigate("Place", {
+            props.navigation.navigate("Place", {
               placeData: place
             })
           }
