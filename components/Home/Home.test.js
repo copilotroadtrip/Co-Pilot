@@ -1,10 +1,8 @@
 import React from "react";
 import NavigationTestUtils from "react-navigation/NavigationTestUtils";
-import { mockTrip } from "../../utilities/mockTrips.js";
 import { shallow } from "enzyme";
 
 import Home from "./Home";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 describe("PlaceCard", () => {
   NavigationTestUtils.resetInternalState();
