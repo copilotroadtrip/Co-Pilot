@@ -2,12 +2,10 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   Text,
-  View,
   TextInput,
   TouchableOpacity,
   ImageBackground
 } from "react-native";
-import PlacesCard from "../PlacesCard/PlacesCard";
 
 export default class Home extends Component {
   state = {
@@ -19,6 +17,10 @@ export default class Home extends Component {
   };
 
   componentDidMount = () => {
+    this.getLocation();
+  };
+
+  getLocation = () => {
     navigator.geolocation.getCurrentPosition(
       position => {
         const location = position;
@@ -56,25 +58,6 @@ export default class Home extends Component {
     });
   };
 
-  renderPlaces = () => {
-    const { places, legs } = this.state.trip;
-    return places.map((place, index) => {
-      if (legs[index]) {
-        return (
-          <View key={place.name}>
-            <PlacesCard place={place} leg={legs[index]} />
-          </View>
-        );
-      } else {
-        return (
-          <View key={place.name}>
-            <PlacesCard place={place} leg="trip Complete" />
-          </View>
-        );
-      }
-    });
-  };
-
   static navigationOptions = {
     title: "Co-Pilot",
     headerStyle: {
@@ -102,6 +85,7 @@ export default class Home extends Component {
           clearTextOnFocus
           autoCompleteType="street-address"
           returnKeyType="next"
+          data-test="origin-input"
         />
         <TextInput
           style={styles.textInput}
@@ -112,6 +96,7 @@ export default class Home extends Component {
           onSubmitEditing={() => {
             this.makeTrip();
           }}
+          data-test="destination-input"
         />
         <TouchableOpacity onPress={() => this.makeTrip()} style={styles.button}>
           <Text style={styles.buttonText}>Make Trip</Text>

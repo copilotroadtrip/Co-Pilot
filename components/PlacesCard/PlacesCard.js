@@ -22,9 +22,7 @@ export default class PlacesCard extends Component {
     var sign = hours < 0 ? "-" : "";
     var hour = Math.floor(Math.abs(hours));
     var min = Math.floor((Math.abs(hours) * 60) % 60);
-    return (
-      sign + (hour < 10 ? "0" : "") + hour + ":" + (min < 10 ? "0" : "") + min
-    );
+    return sign + (hour === 0 ? "" : hour + "hr :") + min + "min";
   };
 
   static navigationOptions = {
