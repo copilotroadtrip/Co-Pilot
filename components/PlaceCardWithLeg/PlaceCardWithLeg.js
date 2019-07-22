@@ -38,7 +38,7 @@ export default function PlacesCardWithLeg(props) {
         <Text style={styles.arrow}>{"\u2193"}</Text>
         <Text style={styles.distance}>{trip.legs[index].distance}</Text>
         <Text style={styles.hours}>
-          {hoursToNextPlace(trip.legs[index].duration_in_hours) + "hrs"}
+          {hoursToNextPlace(trip.legs[index].duration_in_hours)}
         </Text>
       </View>
     </View>
