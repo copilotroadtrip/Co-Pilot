@@ -8,6 +8,7 @@ import {
   StyleSheet
 } from "react-native";
 import { weatherIcons } from "../../assets/weatherIcons";
+import { Badge } from "react-native-elements";
 
 export default function PlacesCardWithLeg(props) {
   let { place, index, color, weather, trip, hoursToNextPlace } = props;
@@ -36,6 +37,7 @@ export default function PlacesCardWithLeg(props) {
       </ImageBackground>
       <View style={styles.legs}>
         <Text style={styles.arrow}>{"\u2193"}</Text>
+        {/* <Badge value={trip.legs[index].distance} size='large' color='blue'/> */}
         <Text style={styles.distance}>{trip.legs[index].distance}</Text>
         <Text style={styles.hours}>
           {hoursToNextPlace(trip.legs[index].duration_in_hours)}

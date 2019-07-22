@@ -4,7 +4,8 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  ImageBackground
+  ImageBackground,
+  View
 } from "react-native";
 
 export default class Home extends Component {
@@ -29,11 +30,12 @@ export default class Home extends Component {
         });
       },
       error => console.log(error.message),
-      { enableHighAccuracy: true, timeout: 2000 }
+      { enableHighAccuracy: false, timeout: 2000 }
     );
   };
 
   makeTrip = async () => {
+    console.log(this.state.origin)
     try {
       const response = await fetch(
         "https://copilot-backend.herokuapp.com/api/v1/trips",
@@ -77,6 +79,7 @@ export default class Home extends Component {
         style={styles.backGround}
         source={require("../../assets/roadtrip1.jpeg")}
       >
+        <View style={styles.form}>
         <TextInput
           style={styles.textInput}
           placeholder="Current Location"
@@ -101,12 +104,19 @@ export default class Home extends Component {
         <TouchableOpacity onPress={() => this.makeTrip()} style={styles.button}>
           <Text style={styles.buttonText}>Make Trip</Text>
         </TouchableOpacity>
+        </View>
       </ImageBackground>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  form: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 150,
+  },
   textInput: {
     width: 250,
     height: 60,
@@ -132,7 +142,8 @@ const styles = StyleSheet.create({
     height: 60,
     backgroundColor: "#278DC3",
     marginTop: 10,
-    borderRadius: 10
+    borderRadius: 10,
+    
   },
   buttonText: {
     color: "white",
