@@ -4,12 +4,11 @@ import {
   Text,
   View,
   ImageBackground,
-  TouchableOpacity,
-  ScrollView,
-  Image
+  ScrollView
 } from "react-native";
-import { weatherIcons } from "../../assets/weatherIcons";
 import { Icon } from "react-native-elements";
+import PlacesCardWithLeg from "../PlaceCardWithLeg/PlaceCardWithLeg";
+import PlaceCardWithoutLeg from "../PlaceCardWithoutLeg/PlaceCardWithoutLeg";
 
 export default class PlacesCard extends Component {
   constructor(props) {
@@ -69,40 +68,15 @@ export default class PlacesCard extends Component {
                 place.weather === "sleet")
             ) {
               return (
-                <View key={place.id} style={styles.view}>
-                  <ImageBackground
-                    imageStyle={{ borderRadius: 10, opacity: 0.7 }}
-                    key={place.name}
-                    style={styles.image}
-                    backgroundColor="red"
-                  >
-                    <TouchableOpacity
-                      onPress={() =>
-                        this.props.navigation.navigate("Place", {
-                          placeData: place
-                        })
-                      }
-                      style={styles.cardContent}
-                    >
-                      <Text style={styles.name}>{place.name}</Text>
-                      <Image
-                        source={{ uri: weatherIcons[weather] }}
-                        style={styles.summary}
-                      />
-                    </TouchableOpacity>
-                  </ImageBackground>
-                  <View style={styles.legs}>
-                    <Text style={styles.arrow}>{"\u2193"}</Text>
-                    <Text style={styles.distance}>
-                      {trip.legs[index].distance}
-                    </Text>
-                    <Text style={styles.hours}>
-                      {this.hoursToNextPlace(
-                        trip.legs[index].duration_in_hours
-                      ) + "hrs"}
-                    </Text>
-                  </View>
-                </View>
+                <PlacesCardWithLeg
+                  place={place}
+                  index={index}
+                  color={"red"}
+                  hoursToNextPlace={this.hoursToNextPlace}
+                  weather={weather}
+                  trip={trip}
+                  navigation={navigation}
+                />
               );
             }
             if (
@@ -110,77 +84,27 @@ export default class PlacesCard extends Component {
               (place.weather === "snow" || place.weather === "thunderstorm")
             ) {
               return (
-                <View key={place.id} style={styles.view}>
-                  <ImageBackground
-                    imageStyle={{ borderRadius: 10, opacity: 0.7 }}
-                    key={place.name}
-                    style={styles.image}
-                    backgroundColor="yellow"
-                  >
-                    <TouchableOpacity
-                      onPress={() =>
-                        this.props.navigation.navigate("Place", {
-                          placeData: place
-                        })
-                      }
-                      style={styles.cardContent}
-                    >
-                      <Text style={styles.name}>{place.name}</Text>
-                      <Image
-                        source={{ uri: weatherIcons[weather] }}
-                        style={styles.summary}
-                      />
-                    </TouchableOpacity>
-                  </ImageBackground>
-                  <View style={styles.legs}>
-                    <Text style={styles.arrow}>{"\u2193"}</Text>
-                    <Text style={styles.distance}>
-                      {trip.legs[index].distance}
-                    </Text>
-                    <Text style={styles.hours}>
-                      {this.hoursToNextPlace(
-                        trip.legs[index].duration_in_hours
-                      ) + "hrs"}
-                    </Text>
-                  </View>
-                </View>
+                <PlacesCardWithLeg
+                  place={place}
+                  index={index}
+                  color={"yellow"}
+                  hoursToNextPlace={this.hoursToNextPlace}
+                  weather={weather}
+                  trip={trip}
+                  navigation={navigation}
+                />
               );
             } else if (trip.legs[index]) {
               return (
-                <View key={place.id} style={styles.view}>
-                  <ImageBackground
-                    imageStyle={{ borderRadius: 10, opacity: 0.7 }}
-                    key={place.name}
-                    style={styles.image}
-                    backgroundColor="green"
-                  >
-                    <TouchableOpacity
-                      onPress={() =>
-                        this.props.navigation.navigate("Place", {
-                          placeData: place
-                        })
-                      }
-                      style={styles.cardContent}
-                    >
-                      <Text style={styles.name}>{place.name}</Text>
-                      <Image
-                        source={{ uri: weatherIcons[weather] }}
-                        style={styles.summary}
-                      />
-                    </TouchableOpacity>
-                  </ImageBackground>
-                  <View style={styles.legs}>
-                    <Text style={styles.arrow}>{"\u2193"}</Text>
-                    <Text style={styles.distance}>
-                      {trip.legs[index].distance}
-                    </Text>
-                    <Text style={styles.hours}>
-                      {this.hoursToNextPlace(
-                        trip.legs[index].duration_in_hours
-                      ) + "hrs"}
-                    </Text>
-                  </View>
-                </View>
+                <PlacesCardWithLeg
+                  place={place}
+                  index={index}
+                  color={"green"}
+                  hoursToNextPlace={this.hoursToNextPlace}
+                  weather={weather}
+                  trip={trip}
+                  navigation={navigation}
+                />
               );
             } else {
               if (
@@ -189,29 +113,12 @@ export default class PlacesCard extends Component {
                 place.weather === "sleet"
               ) {
                 return (
-                  <View key={Math.random()} style={{ marginBottom: 30 }}>
-                    <ImageBackground
-                      imageStyle={{ borderRadius: 10, opacity: 0.7 }}
-                      key={place.name}
-                      style={styles.image}
-                      backgroundColor="red"
-                    >
-                      <TouchableOpacity
-                        onPress={() =>
-                          this.props.navigation.navigate("Place", {
-                            placeData: place
-                          })
-                        }
-                        style={styles.cardContent}
-                      >
-                        <Text style={styles.name}>{place.name}</Text>
-                        <Image
-                          source={{ uri: weatherIcons[weather] }}
-                          style={styles.summary}
-                        />
-                      </TouchableOpacity>
-                    </ImageBackground>
-                  </View>
+                  <PlaceCardWithoutLeg
+                    place={place}
+                    color={"red"}
+                    weather={weather}
+                    navigation={navigation}
+                  />
                 );
               }
               if (
@@ -219,55 +126,21 @@ export default class PlacesCard extends Component {
                 place.weather === "thunderstorm"
               ) {
                 return (
-                  <View key={Math.random()} style={{ marginBottom: 30 }}>
-                    <ImageBackground
-                      imageStyle={{ borderRadius: 10, opacity: 0.7 }}
-                      key={place.name}
-                      style={styles.image}
-                      backgroundColor="yellow"
-                    >
-                      <TouchableOpacity
-                        onPress={() =>
-                          this.props.navigation.navigate("Place", {
-                            placeData: place
-                          })
-                        }
-                        style={styles.cardContent}
-                      >
-                        <Text style={styles.name}>{place.name}</Text>
-                        <Image
-                          source={{ uri: weatherIcons[weather] }}
-                          style={styles.summary}
-                        />
-                      </TouchableOpacity>
-                    </ImageBackground>
-                  </View>
+                  <PlaceCardWithoutLeg
+                    place={place}
+                    color={"yellow"}
+                    weather={weather}
+                    navigation={navigation}
+                  />
                 );
               } else {
                 return (
-                  <View key={Math.random()} style={{ marginBottom: 30 }}>
-                    <ImageBackground
-                      imageStyle={{ borderRadius: 10, opacity: 0.7 }}
-                      key={place.name}
-                      style={styles.image}
-                      backgroundColor="green"
-                    >
-                      <TouchableOpacity
-                        onPress={() =>
-                          this.props.navigation.navigate("Place", {
-                            placeData: place
-                          })
-                        }
-                        style={styles.cardContent}
-                      >
-                        <Text style={styles.name}>{place.name}</Text>
-                        <Image
-                          source={{ uri: weatherIcons[weather] }}
-                          style={styles.summary}
-                        />
-                      </TouchableOpacity>
-                    </ImageBackground>
-                  </View>
+                  <PlaceCardWithoutLeg
+                    place={place}
+                    color={"green"}
+                    weather={weather}
+                    navigation={navigation}
+                  />
                 );
               }
             }
