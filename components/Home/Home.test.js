@@ -30,8 +30,8 @@ describe("PlaceCard", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it.skip("should match init state", () => {
-    const initState = { origin: "", destination: "", error: "", trip: {} };
+  it("should match init state", () => {
+    const initState = { origin: "", destination: "", error: "", trip: {}, isLoading: false };
 
     expect(wrapper.state()).toEqual(initState);
   });
