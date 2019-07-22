@@ -8,11 +8,7 @@ import {
   ScrollView,
   Image
 } from "react-native";
-import { weatherList } from "../../assets/backgroundImages";
-import Place from "../Place/Place";
 import { weatherIcons } from "../../assets/weatherIcons";
-
-
 
 export default function PlacesCard(props) {
   const { navigation } = props;
@@ -22,12 +18,8 @@ export default function PlacesCard(props) {
     var sign = hours < 0 ? "-" : "";
     var hour = Math.floor(Math.abs(hours));
     var min = Math.floor((Math.abs(hours) * 60) % 60);
-    return (
-      sign + (hour < 10 ? "0" : "") + hour + ":" + (min < 10 ? "0" : "") + min
-    );
+    return sign + (hour === 0 ? "" : hour + "hr :") + min + "min";
   };
-
-  
 
   return (
     <ScrollView>
@@ -66,7 +58,7 @@ export default function PlacesCard(props) {
                 <Text style={styles.arrow}>{"\u2193"}</Text>
                 <Text style={styles.distance}>{trip.legs[index].distance}</Text>
                 <Text style={styles.hours}>
-                  {hoursToNextPlace(trip.legs[index].duration_in_hours) + "hrs"}
+                  {hoursToNextPlace(trip.legs[index].duration_in_hours)}
                 </Text>
               </View>
             </View>
@@ -103,7 +95,7 @@ export default function PlacesCard(props) {
                 <Text style={styles.arrow}>{"\u2193"}</Text>
                 <Text style={styles.distance}>{trip.legs[index].distance}</Text>
                 <Text style={styles.hours}>
-                  {hoursToNextPlace(trip.legs[index].duration_in_hours) + "hrs"}
+                  {hoursToNextPlace(trip.legs[index].duration_in_hours)}
                 </Text>
               </View>
             </View>
@@ -136,7 +128,7 @@ export default function PlacesCard(props) {
                 <Text style={styles.arrow}>{"\u2193"}</Text>
                 <Text style={styles.distance}>{trip.legs[index].distance}</Text>
                 <Text style={styles.hours}>
-                  {hoursToNextPlace(trip.legs[index].duration_in_hours) + "hrs"}
+                  {hoursToNextPlace(trip.legs[index].duration_in_hours)}
                 </Text>
               </View>
             </View>
@@ -285,5 +277,3 @@ const styles = StyleSheet.create({
     alignItems: "center"
   }
 });
-
-
