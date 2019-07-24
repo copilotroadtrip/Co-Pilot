@@ -24,9 +24,9 @@ to build this project.
 
 ## Screenshots
 
-<img src="https://user-images.githubusercontent.com/42000931/61581737-3f6c4580-aadf-11e9-902e-8bcb72d48e07.jpeg" width="300" height="600" />
-<img src="https://user-images.githubusercontent.com/42000931/61581726-2368a400-aadf-11e9-92dc-9ad326184bc0.jpeg" width="300" height="600" />
-<img src="https://user-images.githubusercontent.com/42000931/61581729-2c597580-aadf-11e9-8539-12121fe004dc.jpeg" width="300" height="600" />
+<img src="https://user-images.githubusercontent.com/42000931/61822378-a3ac4380-ae16-11e9-89e1-7c8124f8e95d.JPG" width="300" height="600" />
+<img src="https://user-images.githubusercontent.com/42000931/61822428-bd4d8b00-ae16-11e9-8e5c-f63971f93174.JPG" width="300" height="600" />
+<img src="https://user-images.githubusercontent.com/42000931/61822459-cb031080-ae16-11e9-8f9a-10e20151d77f.JPG" width="300" height="600" />
 
 ## Contributors:
 
