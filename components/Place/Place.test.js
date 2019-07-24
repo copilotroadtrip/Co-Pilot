@@ -19,7 +19,6 @@ describe("Place", () => {
   });
 
   beforeEach(() => {
-   
     props = createTestProps({});
     wrapper = shallow(<Place {...props} />);
   });
