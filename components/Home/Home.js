@@ -39,7 +39,7 @@ export default class Home extends Component {
     this.setState({ isLoading: true });
     try {
       const response = await fetch(
-        "https://copilot-backend.herokuapp.com/api/v1/trips",
+        "http://localhost:3000/api/v1/trips",
         {
           method: "POST",
           headers: {
