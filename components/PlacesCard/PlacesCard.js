@@ -4,19 +4,25 @@ import {
   Text,
   View,
   ImageBackground,
-  ScrollView
+  ScrollView,
+  Image
 } from "react-native";
 import { Icon } from "react-native-elements";
 import PlacesCardWithLeg from "../PlaceCardWithLeg/PlaceCardWithLeg";
 import PlaceCardWithoutLeg from "../PlaceCardWithoutLeg/PlaceCardWithoutLeg";
+import { data } from "../../utilities/GjMock";
 
 export default class PlacesCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      checked: true
-    };
-  }
+  state = {
+    trip: this.props.navigation.getParam("trip", "loading"),
+    isLoading: true
+  };
+
+  componentDidMount = () => {
+    setTimeout(() => {
+      this.setState({ trip: data, isLoading: false });
+    }, 3000);
+  };
 
   hoursToNextPlace = hours => {
     var sign = hours < 0 ? "-" : "";
@@ -41,12 +47,13 @@ export default class PlacesCard extends Component {
   };
 
   render() {
+    const { trip } = this.state;
     const { navigation } = this.props;
-    const trip = navigation.getParam("trip", "loading");
     return (
       <ImageBackground
         style={styles.backGround}
         source={require("../../assets/roadtrip1.jpeg")}
+        imageStyle={{ opacity: 0.5 }}
       >
         <View style={styles.legend}>
           <Icon name="stop" size={30} color="green" />
@@ -61,57 +68,91 @@ export default class PlacesCard extends Component {
             let weather = place.weather.icon;
             if (
               trip.legs[index] &&
-              (place.weather === "tornado" ||
-                place.weather === "hail" ||
-                place.weather === "sleet")
+              (weather === "tornado" ||
+                weather === "hail" ||
+                weather === "sleet")
             ) {
               return (
-                <PlacesCardWithLeg
-                  place={place}
-                  index={index}
-                  color={"red"}
-                  hoursToNextPlace={this.hoursToNextPlace}
-                  weather={weather}
-                  trip={trip}
-                  navigation={navigation}
-                  key={place.id}
-                />
+                <View key={place.id}>
+                  <PlacesCardWithLeg
+                    place={place}
+                    index={index}
+                    color={"red"}
+                    hoursToNextPlace={this.hoursToNextPlace}
+                    weather={weather}
+                    trip={trip}
+                    navigation={navigation}
+                    key={place.id}
+                  />
+                  {this.state.isLoading && (
+                    <View key="loadingkey">
+                      <Image
+                        source={require("../../assets/loading.gif")}
+                        style={{ height: 100, width: 100 }}
+                      />
+                    </View>
+                  )}
+                </View>
               );
             }
             if (
               trip.legs[index] &&
-              (place.weather === "snow" || place.weather === "thunderstorm")
+              (weather === "snow" || weather === "thunderstorm")
             ) {
               return (
-                <PlacesCardWithLeg
-                  place={place}
-                  index={index}
-                  color={"yellow"}
-                  hoursToNextPlace={this.hoursToNextPlace}
-                  weather={weather}
-                  trip={trip}
-                  navigation={navigation}
-                  key={place.id}
-                />
+                <View key={place.id}>
+                  <PlacesCardWithLeg
+                    place={place}
+                    index={index}
+                    color={"yellow"}
+                    hoursToNextPlace={this.hoursToNextPlace}
+                    weather={weather}
+                    trip={trip}
+                    navigation={navigation}
+                    key={place.id}
+                  />
+                  {this.state.isLoading && (
+                    <View key="loading">
+                      <Image
+                        source={require("../../assets/loading.gif")}
+                        style={{ height: 100, width: 100 }}
+                      />
+                    </View>
+                  )}
+                </View>
               );
             } else if (trip.legs[index]) {
               return (
-                <PlacesCardWithLeg
-                  place={place}
-                  index={index}
-                  color={"green"}
-                  hoursToNextPlace={this.hoursToNextPlace}
-                  weather={weather}
-                  trip={trip}
-                  navigation={navigation}
-                  key={place.id}
-                />
+                <View key={place.id}>
+                  <PlacesCardWithLeg
+                    place={place}
+                    index={index}
+                    color={"green"}
+                    hoursToNextPlace={this.hoursToNextPlace}
+                    weather={weather}
+                    trip={trip}
+                    navigation={navigation}
+                    key={place.id}
+                  />
+                  {this.state.isLoading && (
+                    <View key="loading">
+                      <Image
+                        source={require("../../assets/loading.gif")}
+                        style={{
+                          height: 100,
+                          width: 100,
+                          marginLeft: "37%"
+                        }}
+                      />
+                    </View>
+                  )}
+                </View>
               );
             } else {
               if (
-                place.weather === "tornado" ||
-                place.weather === "hail" ||
-                place.weather === "sleet"
+                weather === "tornado" ||
+                weather === "hail" ||
+                weather === "sleet"
               ) {
                 return (
                   <PlaceCardWithoutLeg
@@ -123,10 +164,7 @@ export default class PlacesCard extends Component {
                   />
                 );
               }
-              if (
-                place.weather === "snow" ||
-                place.weather === "thunderstorm"
-              ) {
+              if (weather === "snow" || weather === "thunderstorm") {
                 return (
                   <PlaceCardWithoutLeg
                     place={place}
@@ -140,7 +178,7 @@ export default class PlacesCard extends Component {
                 return (
                   <PlaceCardWithoutLeg
                     place={place}
-                    color={"yellow"}
+                    color={"green"}
                     weather={weather}
                     navigation={navigation}
                     key={place.id}

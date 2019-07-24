@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { data } from "../../utilities/GjMock";
+import { initData } from "../../utilities/GjmockInit";
 import {
   StyleSheet,
   Text,
@@ -6,6 +8,7 @@ import {
   TouchableOpacity,
   ImageBackground,
   View,
+  Image,
   ActivityIndicator
 } from "react-native";
 
@@ -14,7 +17,7 @@ export default class Home extends Component {
     origin: "",
     destination: "",
     error: "",
-    trip: {},
+    trip: initData,
     isLoading: false
   };
 
@@ -37,28 +40,36 @@ export default class Home extends Component {
 
   makeTrip = async () => {
     this.setState({ isLoading: true });
-    try {
-      const response = await fetch(
-        "https://copilot-backend.herokuapp.com/api/v1/trips",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            origin: this.state.origin,
-            destination: this.state.destination
-          })
-        }
-      );
-      const newTrip = await response.json();
-      this.setState({ trip: newTrip.data, isLoading: false });
+    // try {
+    //   const response = await fetch("http://localhost:3000/api/v1/trips", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json"
+    //     },
+    //     body: JSON.stringify({
+    //       origin: this.state.origin,
+    //       destination: this.state.destination
+    //     })
+    //   });
+    //   const newTrip = await response.json();
+    //   this.setState({ trip: newTrip.data, isLoading: false });
+    //   this.props.navigation.navigate("PlacesCard", {
+    //     trip: this.state.trip
+    //   });
+    // } catch (error) {
+    //   this.setState({ error: error.message });
+    // }
+    setTimeout(() => {
       this.props.navigation.navigate("PlacesCard", {
         trip: this.state.trip
       });
-    } catch (error) {
-      this.setState({ error: error.message });
-    }
+    }, 2000);
+    setTimeout(() => {
+      this.setState({ isLoading: false });
+    }, 3000);
+    setTimeout(() => {
+      this.setState({ trip: data });
+    }, 5000);
   };
 
   static navigationOptions = {
@@ -111,7 +122,12 @@ export default class Home extends Component {
       >
         {!this.state.isLoading && form}
         {this.state.isLoading && (
-          <ActivityIndicator size="large" color="#E9651A"/>
+          <View>
+            <Image
+              source={require("../../assets/loading.gif")}
+              style={{ height: 200, width: 200 }}
+            />
+          </View>
         )}
       </ImageBackground>
     );

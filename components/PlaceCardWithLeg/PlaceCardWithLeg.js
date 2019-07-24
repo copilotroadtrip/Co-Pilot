@@ -36,8 +36,8 @@ export default function PlacesCardWithLeg(props) {
         </TouchableOpacity>
       </ImageBackground>
       <View style={styles.legs}>
-        <Text style={styles.arrow}>{"\u2193"}</Text>
         <Text style={styles.distance}>{trip.legs[index].distance}</Text>
+        {/* <Text style={styles.arrow}>{"\u2193"}</Text> */}
         <Text style={styles.hours}>
           {hoursToNextPlace(trip.legs[index].duration_in_hours)}
         </Text>
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     borderColor: "white",
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: 10
   },
   summary: {
     height: 55,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginRight: "auto",
     marginBottom: 0,
-    marginLeft: 'auto',
+    marginLeft: "auto",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   legs: {
     flexDirection: "row",
     width: "100%",
-    justifyContent: "space-around",
+    justifyContent: "space-around"
   },
   arrow: {
     fontSize: 40
@@ -94,12 +94,12 @@ const styles = StyleSheet.create({
   distance: {
     fontSize: 40,
     fontFamily: "Optima",
-    fontWeight: "bold",
+    fontWeight: "bold"
   },
   hours: {
     fontSize: 40,
     fontFamily: "Optima",
-    fontWeight: "bold",
+    fontWeight: "bold"
   },
   view: {
     alignItems: "center"
