@@ -11,11 +11,40 @@ import PlacesCardWithLeg from "../PlaceCardWithLeg/PlaceCardWithLeg";
 import PlaceCardWithoutLeg from "../PlaceCardWithoutLeg/PlaceCardWithoutLeg";
 
 export default class PlacesCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      checked: true
-    };
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     checked: true
+  //   };
+  // }
+  state = {
+    trip: this.props.navigation.getParam("trip", "Loading")
+  }
+
+  componentDidMount = () => {
+    this.checkTripStatus()
+  }
+
+  checkTripStatus = async () => {
+    // New fetch with GET, infinite loop until status 200
+    console.log("checkTripStatus invoked...")
+
+    try {
+      const response = await fetch(`http://localhost:3000/api/v1/trips?token=${this.state.trip.trip_token}`)
+      const updatedTrip = await response.json();
+      console.log("GET request status code: ", response.status)
+
+      if (response.status !== 200) {
+        setTimeout(() => {
+          this.checkTripStatus()
+        }, 2500) // 5 second wait between fetching again
+      } else {
+        this.setState({ trip: updatedTrip.data });
+      }
+
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   hoursToNextPlace = hours => {
@@ -42,11 +71,12 @@ export default class PlacesCard extends Component {
 
   render() {
     const { navigation } = this.props;
-    const trip = navigation.getParam("trip", "loading");
+    const { trip } = this.state;
     return (
       <ImageBackground
         style={styles.backGround}
         source={require("../../assets/roadtrip1.jpeg")}
+        imageStyle={{ opacity: 0.5 }}
       >
         <View style={styles.legend}>
           <Icon name="stop" size={30} color="green" />
@@ -140,7 +170,7 @@ export default class PlacesCard extends Component {
                 return (
                   <PlaceCardWithoutLeg
                     place={place}
-                    color={"yellow"}
+                    color={"green"}
                     weather={weather}
                     navigation={navigation}
                     key={place.id}

@@ -36,7 +36,6 @@ export default function PlacesCardWithLeg(props) {
         </TouchableOpacity>
       </ImageBackground>
       <View style={styles.legs}>
-        <Text style={styles.arrow}>{"\u2193"}</Text>
         <Text style={styles.distance}>{trip.legs[index].distance}</Text>
         <Text style={styles.hours}>
           {hoursToNextPlace(trip.legs[index].duration_in_hours)}
