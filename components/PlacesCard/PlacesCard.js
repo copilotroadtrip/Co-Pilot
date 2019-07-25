@@ -37,7 +37,7 @@ export default class PlacesCard extends Component {
       if (response.status !== 200) {
         setTimeout(() => {
           this.checkTripStatus()
-        }, 5000) // 5 second wait between fetching again
+        }, 2500) // 5 second wait between fetching again
       } else {
         this.setState({ trip: updatedTrip.data });
       }
@@ -76,6 +76,7 @@ export default class PlacesCard extends Component {
       <ImageBackground
         style={styles.backGround}
         source={require("../../assets/roadtrip1.jpeg")}
+        imageStyle={{ opacity: 0.5 }}
       >
         <View style={styles.legend}>
           <Icon name="stop" size={30} color="green" />
@@ -169,7 +170,7 @@ export default class PlacesCard extends Component {
                 return (
                   <PlaceCardWithoutLeg
                     place={place}
-                    color={"yellow"}
+                    color={"green"}
                     weather={weather}
                     navigation={navigation}
                     key={place.id}
